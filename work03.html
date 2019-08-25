@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>Sanket - Personal Site </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/main.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">SANKET</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+			<li><a href="assets/cv/SANKET SHAH res_2019.pdf" target="_blank" >CV / Resume</a></li>
+<!--             <li><a href="blog.html">Blog</a></li>
+ -->            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+	
+	<!-- +++++ Post +++++ -->
+	<div id="white">
+	    <div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<p><img src="assets/img/sanket.jpg" width="50px" height="50px"> <ba>Sanket</ba></p>
+					<p><bd>August 1, 2019</bd></p>
+					<h4>Amazon Reviews Sentiment & Word Cloud</h4>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/0_Word_Cloud.png" alt=""></p>
+					<p>Let’s say you have thousands of reviews for your product or thousands of text comments for a survey that you recently conducted. You want to know if the comment/text is positive, negative or neutral and top words appearing on your text document(s). Additionally, you are expert in data manipulation and can use ‘search’ and ‘find’ Excel functions but do not have the time to sort through each comment or the tedious task of reading each comment and marking positive or negative. On top of that, you do not have prior coding experience not you have the time to learn Python before your next week’s deadline. What do you do?</p>
+					<p>Well- this “Orange” tool is for you. This analysis was completed less than an hour and no coding experience is needed. But wait... There is more...</p>
+					<p>it’s all FREE. Let’s go through this step by step. First, you will need to download and install Orange. Add Text analytics add-in if not installed already. Download the data set from Kaggle and save the file locally as CSV. </p>
+					<h6>Below is overview of the Orange diagram</h6>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/1_overall.png" alt=""></p>
+					<p>Let's import the file and select 'skip' on all variables except 'id', 'manufacturer', 'reviews_text' and assign the appropriate type for those three variables as highlighted in the image below.</p>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/2_file_input.png" alt=""></p>
+					<p>Below image walks you through steps for the word cloud. Here were are selecting manufacturer (Amazon), randomizing rows, selecting 10,000 reviews, data table (which is just there to see if the output from data sampler- not necessary) and converting to corpus. We then use process text to lowercase, remove accents, remove urls, tokenize words and punctuations and filter out stop words. </p>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/2.1overall.png" alt=""></p>
+					<p>Here is the complete image of the word cloud. After tokenization and filtering stop words, etc- we have 7,953 words from 10,000 random reviews. Top words appear to be 'great', 'tablet', 'use' and 'love'.</p>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/3_Word_Cloud.png" alt=""></p>
+					<h5>Let’s shift gears and look at the sentiment of the reviews- was the review positive or negative? </h5>
+					<p>For this we will use the vader sentiment algorithm to figure out number of positive, neutral and negative words in the reviews. The algorithm also provides a score called compound score which basically normalizes and appropriately weights it the three sentiments. The score of -1 suggests most extreme negative and +1 suggests extreme positive.</p>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/3.1_overall.png" alt=""></p>
+					<p>But, before we get to the score, lets take a quick look at the heat map and see if we can cluster the reviews with sentiment and see if any interesting groups pop up.</p>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/4_Heat_map_15_clusters - Copy.png" alt=""></p>
+					<p>Upon close examination, we can see that most of the reviews are marked as neutral and the positive and then negative. High compound score reviews are grouped at the top and low ones at the bottom. </p>
+					<p>Below is an example of one of the review. In this review- 77.2% of the words were neutral, 3.8% negative and 19% positive with a compound score of 78.8%. If you look closely, it makes sense- the parent found the parental control bit confusing (a slightly negative sentiment), the case was perfect (positive sentiment) and overall product was perfect (positive sentiment)</p>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/5_Corpus_viewer.png" alt=""></p>
+					<p>The data table shows that the sentiment analysis went through all 10,000 reviews and scored it. Here is preview of few reviews.</p>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/6_data_table_output.png" alt=""></p>
+					<p>From this point, we can either treat the sentiment/ compound score as a continuous variable and export the file for external analysis or we can create a histogram of the compound score to see the distribution and treat the bin range as discrete variable. Lets take a look at the distribution.</p>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/7_output_distribution.png" alt=""></p>
+					<p>From the distribution, we see that roughly half of the reviews have compound score of >= 75.8% and about 25% of the reviews have compound score between 51.8% - 75.8%</p>
+					<p><img class="img-responsive" src="assets/img/work/work_3_output/3.2_overall.png" alt=""></p>
+					<p>Lastly, we can export/ save the reviews for further analysis if we like.</p>
+					<p>In conclusion, we looked at the word cloud to see top 100 words appearing the 10,000 reviews, we generated heat map to see like comments and grouped them into a cluster, we used sentiment analysis algorithm to figure out the overall compound score of the review and generated a histogram of the compound score. All this with out any coding. </p>
+					<p>Possibilities- are endless with text/ sentiment analysis- we can look at survey data, product reviews, restaurant/ hotel reviews, twitter comments, etc...</p>
+					
+					<h4>Overall, Amazon branded products appears to have positive reviews and I would not hesitate to buy one soon. </h4>
+					<p>   </p>
+					
+					<p>
+						<h5>Here are reference links:</h5>
+						<a href="https://www.kaggle.com/datafiniti/consumer-reviews-of-amazon-products/version/3#1429_1.csv" target="_blank title="Go to kaggle">Link to Kaggle data set</a><br/>
+						<a href="https://orange.biolab.si/" target="_blank1 title="Go to Orange">Link to Orange</a><br/>
+						<a href="https://github.com/cjhutto/vaderSentiment" title="Go to vaderSentiment" target="_blank2 title="Go to vaderSentiment">Link to vader sentiment documentation</a></br>
+					</p>
+
+					
+					<p></p>
+					<br>
+					<p><bt>TAGS: <a href="#">text</a> - <a href="#">Orange</a></bt></p>
+					<hr>
+					<p><a href="work.html"># Back</a></p>
+				</div>
+
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /white -->
+	
+	
+	
+	
+	<!-- +++++ Footer Section +++++ -->
+	
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<h4>MY HABITAT</h4>
+					<p>
+						Philadelphia<br/>
+						Pennsylvania, USA.
+					</p>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4">
+					<h4>My Links</h4>
+					<p>
+<!-- 						<a href="#">Dribbble</a><br/>
+						<a href="#">Twitter</a><br/> -->
+						<a href="https://bit.ly/2L8HV0v" target="_blank3" >Linkedin</a>
+					</p>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4">
+					<h4>About SANKET</h4>
+					<p>This page was created to showcase my work in a simple way.</p>
+				</div><!-- /col-lg-4 -->
+			
+			</div>
+		
+		</div>
+	</div>
+	
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/bootstrap.min.js"></script>
+  </body>
+</html>
