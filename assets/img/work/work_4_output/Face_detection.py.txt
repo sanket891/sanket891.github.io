@@ -1,0 +1,37 @@
+import cv2
+import matplotlib.pyplot as plt
+font = cv2.FONT_HERSHEY_SIMPLEX
+
+cascPath1 = 'C:/Users/ShahS2/Documents/Python_Scripts/data/haarcascades/haarcascade_frontalface_default.xml'
+cascPath2 = 'C:/Users/ShahS2/Documents/Python_Scripts/data/haarcascades/haarcascade_frontalface_alt2.xml'
+cascPath3 = 'C:/Users/ShahS2/Documents/Python_Scripts/data/haarcascades/haarcascade_frontalface_alt_tree.xml'
+cascPath4 = 'C:/Users/ShahS2/Documents/Python_Scripts/data/haarcascades/haarcascade_frontalface_alt.xml'
+
+# assign the Cascade Classifier
+faceCascade = cv2.CascadeClassifier(cascPath4)
+
+#assign the image
+image_name = "U_S_presidents.jpg"
+
+# Load the image and convert to grayscale
+gray = cv2.imread(image_name, 0)
+plt.figure(figsize=(12,8))
+plt.imshow(gray, cmap='gray')
+plt.show()
+
+# Detect faces
+faces = faceCascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, flags=cv2.CASCADE_SCALE_IMAGE)
+
+# For each face
+for (x, y, w, h) in faces: 
+    # Draw rectangle around the face
+    cv2.rectangle(gray, (x, y), (x+w, y+h), (255, 0, 0), 3)
+    
+#display the image    
+plt.figure(figsize=(12,8))
+cv2.putText(gray,'Number of Faces : ' + str(len(faces)),(10, 30), font, 1,(255,255,255),2)      
+plt.imshow(gray, cmap='gray')
+plt.show()
+
+#save the image
+cv2.imwrite('C:/Users/ShahS2/Documents/Python_Scripts/' + 'gray2_' + image_name, gray)
