@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>Sanket - Personal Site </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/main.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">SANKET</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+			<li><a href="assets/cv/SANKET SHAH res_2019.pdf" target="_blank" >CV / Resume</a></li>
+<!--             <li><a href="blog.html">Blog</a></li>
+ -->            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+	
+	<!-- +++++ Post +++++ -->
+	<div id="white">
+	    <div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<p><img src="assets/img/sanket.jpg" width="50px" height="50px"> <ba>Sanket</ba></p>
+					<p><bd>August 1, 2019</bd></p>
+					<h4>Predicting Employee Churn</h4>
+					<p><img class="img-responsive" src="assets/img/work/work_5_output/Employee_churn.png" alt=""></p>
+					
+					<p>Let’s look at predicting employee churn using Weka (Java based GUI tool – fast, easy to run and plenty of algorithms and data processing functionality. </p>
+					
+					<p>Before we begin let’s focus on the goal/objective. Why are we doing this in the first place? We all know that retaining customers is less costly then obtaining new ones.
+					In any case, customers will eventually leave and move on but the longer a customer stays with the company/ product; the more sales/profit for the company.
+					This holds true for employees as well. It can get expensive to constantly train and hire new employees.
+					Not only it costs companies, but there is also a risk of disrupting the business in the process. 
+					Now, some employee churn is okay and it may not be controllable but employers may find it useful to see what variables are driving high churn
+					or what programs they can offer to prevent churn.</p>
+					
+					<p>For business problems such as these- I tend to use the CRISP-DM methodology. 
+					The process starts from business understanding to data understanding to data preparation to modeling to evaluation to deployment.  </p>
+					
+					<p> The very first step should be to understand the problem at hand and make sure all the stakeholders are in alignment. 
+					If you are answering the wrong question or going after the wrong objective, then the outcome will be incorrect as well. 
+					Next comes the data understanding and data preparation- this will take majority of the time (at least 70% of the project) and one should be very comfortable on the features used in the data set. 
+					Once that is completed then it’s the modeling step- here one should experiment with various technique and make sure the model makes sense. 
+					Next comes the evaluation piece- where one should compare the performance of multiple models. One should also weight if model interpretability or model accuracy is more important. 
+					It may be difficult to explain your neural network result to c-level executives even if the model comes out to be 96% accurate. 
+					On the other hand, a decision tree model may work fine if it’s able to provide list of important features and it’s correct 92% of the time. 
+					Once, the evaluation step is done, think about how the model can be deployed in the production systems or how can the business use that information for future decision making. 
+					So many projects end up in a stage where they are not deployed and end up as a code on someone’s hard drive. </p>
+					
+					<p> Enough of the preliminary stuff. Let’s dig into the HR data set using Weka. <br/> Weka uses it’s own file type called .ARFF. This file type stores the meta data, any preprocessing work performed by the Weka and actual data all in one file. 
+					Even though Weka prefers to use ARFF file types, we can still use .CSV to import the files initially and then save all preprocessing work in the ARFF file format once we are done.</p>
+					
+					<h6>Here, you can see that there are 14,999 observations, 10 features or attributes.</h6>
+					<p><img class="img-responsive" src="assets/img/work/work_5_output/0_file_import.png" alt=""></p>
+					
+					<p>Let’s look at the visualization – click on “visualize all”</p>
+					<p><img class="img-responsive" src="assets/img/work/work_5_output/1_visualize.png" alt=""></p>
+					
+					<p>Few things to note here- work_accident, promotion_last_5_years and ‘left’ are all binary variables. Weka interpreted as numeric.
+					‘left’ attribute is what we are trying to predict- this should be class variable. 
+					Additionally, if you click on ‘left’- the attribute appears to be highly unbalanced (3,571 churned vs the remaining still employed). 
+					Time_Spend_company appears to be coming in as numeric- looking at the visualization it should be converted to nominal/ categorical value.</p>
+					
+					<p>In the preprocess window, we can go thru each attribute and see basic stats such as: type, number and percent of missing, distinct values, if numeric then (min, max, mean, stdDev, if nominal then (count).</p>
+					<p>Make sure class variable is still selected as 'left'.</p>
+					
+					<p>First, let’s convert numeric attributes to nominal. Filters > unsupervised > Attribute > NumericToNominal. Enter (5,6,7,10) in the attributeIndices. </p>
+					<p><img class="img-responsive" src="assets/img/work/work_5_output/Numeric_nominal_2.png" alt=""></p>
+
+					<p>Next, lets take care for the class unbalanced issue. Filters > Supervised > Instance > SpreadSubSample. Enter 1 in the distributeSpread parameter.</p>
+					<p><img class="img-responsive" src="assets/img/work/work_5_output/sub_sample_3.png" alt=""></p>
+					
+					<p>After applying the SpreadSubSample- lets look at the visualization to see if it worked.</p>
+					<p><img class="img-responsive" src="assets/img/work/work_5_output/sub_sample_3.1.png" alt=""></p>
+
+					<p>Everything looks good now. let’s shift to classify tab. Here, we can pick various classifiers and generate models. We will do 70/30 split 9meaning 70% training and remaining 30% validation).  <br/>
+					Let's run the following: <br/>
+					<b>
+					J48 (Decision Tree)<br/>
+					SimpleLogistic <br/>
+					NaiveBayes <br/>
+					RandomForest <br/> </b>
+					</p>
+										
+					<p> <b>J48 (Decision Tree) Default settings:  
+					<img class="img-responsive" src="assets/img/work/work_5_output/j48_6.png" alt=""> <br/>
+					Decision tree model with default settings. 94.6% accuracy and 96.9 ROC. </b>
+					</p>
+					
+					<p> <b>Decision tree:  </b>
+					<img class="img-responsive" src="assets/img/work/work_5_output/j48_6_tree.png" alt=""> <br/>
+					The default tree looks quite complex. Basically, it splits on satisfaction level. 
+					If the satisfaction level is less than or equal to .46, then it looks at number of projects. 
+					If the satisfaction level is more than .46 then it looks at time spend at company and splits further out. 
+					One thing we see all the way in the bottom are the leaf nodes where we see 1 (63.0/2.0) – all the to the left. 
+					This means that given all the if/else conditions above in the validation data set, that node was able to classify ‘left of 1’ correctly 63 of the 65 observations. 
+					Let’s create another version of the decision tree and change the minNumObj parameter to 50 instead of 2 and binary splits parameter = True. 
+					This increases minimum number of observations needed per leaf. This will decrease the complexity (i.e. make the tree bit smaller and easier to follow). 					
+					</p>
+					
+					<p> <b>J48 (Decision Tree) MinNumPbj (50) and binarySplits (True):  
+					<img class="img-responsive" src="assets/img/work/work_5_output/j48_7.png" alt=""> <br/>
+					<img class="img-responsive" src="assets/img/work/work_5_output/j48_7_tree.png" alt=""> <br/>
+					Decision tree model with MinNumPbj (50) and binarySplits (True). 94.5% accuracy and 96.9 ROC. Here we have simple tree without hurting accuracy and ROC. </b>
+					</p>
+					
+					
+					<p> <b>SimpleLogistic:  
+					<img class="img-responsive" src="assets/img/work/work_5_output/simple_logistic_7.png" alt=""> <br/>
+					SimpleLogistic model with default settings. This algorithm uses a sigmoid function to provide a probabilistic value between 0 and 1 of whether 
+					the data item belongs to 'left' 1 or 0
+					89.2% accuracy and 93.9 ROC. </b>
+					</p>
+					
+					<p> <b>NaiveBayes:  
+					<img class="img-responsive" src="assets/img/work/work_5_output/naiveBayes_8.png" alt=""> <br/>
+					NaiveBayes model with default settings. Using Bayes’ Theorem to calculate the conditional probability of receiving the class label with respect to each attribute.
+					84.6% accuracy and 92.4 ROC. </b>
+					</p>
+					
+					<p> <b>RandomForest:  
+					<img class="img-responsive" src="assets/img/work/work_5_output/random_forest_9.png" alt=""> <br/>
+					Random Forest model with default settings. Random Forest is an extension of bagging for decision trees that can be used for classification or regression
+					97.5% accuracy and 99.2 ROC. </b>
+					</p>
+					
+					<p>Looks like random forest was best model in terms of accuracy and ROC metric. 
+					Some of the important attributes from this model are satisfaction level, number of projects and time_spend_company</p>
+					
+					<p>Let’s save the model if we want to apply this to future data set. Ideally, next step would be to import a data set with new attributes (or current employees) 
+					without the “left” attribute and use the model to predict which employees will “leave”.  </p>
+					
+					<p><img class="img-responsive" src="assets/img/work/work_5_output/model_save10.png" alt=""></p>
+					
+					<p>In summary- we looked at major steps in any predictive analytic project, imported HR churn data set, processed the data set, created 4 models, evaluated that the RandomForest was the best choice and lastly we saved the model for future use.    </p>
+					
+					<p> <b>Overall, we have a fairly good predictive model on employee churn and this model can be used in the near future to score new set of employees with high accuracy. </b> <br/> 
+					Weka is a great open source tool which is great for small size data sets and organizations can get started with machine learning with little to no coding. The tool offers wide range of preprocessing tools and the ability to save the all those steps in an ARFF file format. The visualization piece is not that great though, but it does chew through data extremely well. </p>
+					<p>   </p>
+					
+					<p>
+						<h5>Here are reference links:</h5>
+						<a href="https://www.cs.waikato.ac.nz/ml/weka/" target="_blank title="Go to Weka">Link to Weka</a><br/>
+						<a href="https://www.kaggle.com/pankeshpatel/hrcommasep" target="_blank1 title="Go to kaggle">Link to kaggle data set</a><br/>
+						<a href="https://www.sv-europe.com/crisp-dm-methodology/" title="Go to CRISP-DM" target="_blank2">Crisp-DM-methodology</a></br>
+					</p>
+
+					
+					<p></p>
+					<br>
+					<p><bt>TAGS: <a href="#">Predictive Analytics</a> - <a href="#">Weka</a> - <a href="#">Churn</a> </bt></p>
+					<hr>
+					<p><a href="work.html"># Back</a></p>
+				</div>
+
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /white -->
+	
+	
+	
+	
+	<!-- +++++ Footer Section +++++ -->
+	
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<h4>MY HABITAT</h4>
+					<p>
+						Philadelphia<br/>
+						Pennsylvania, USA.
+					</p>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4">
+					<h4>My Links</h4>
+					<p>
+<!-- 						<a href="#">Dribbble</a><br/>
+						<a href="#">Twitter</a><br/> -->
+						<a href="https://bit.ly/2L8HV0v" target="_blank3" >Linkedin</a>
+					</p>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4">
+					<h4>About SANKET</h4>
+					<p>This page was created to showcase my work.</p>
+				</div><!-- /col-lg-4 -->
+			
+			</div>
+		
+		</div>
+	</div>
+	
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/bootstrap.min.js"></script>
+  </body>
+</html>
